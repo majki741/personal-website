@@ -1,0 +1,65 @@
+.dot {
+    height: 15px;
+    width: 15px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+  }
+.dots {
+    margin-left: 15px;
+}
+
+.dot.green {
+    background-color: #3FC83F;
+}
+
+.dot.red {
+    background-color: #F35F57;
+}
+
+.dot.yellow {
+    background-color: #F6BC2D;
+}
+.image{
+    height: 0.85em;
+}
+.switch-image {
+    height: 1em;
+}
+
+.nav-item {
+    margin-left: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.nav {
+    display: flex;
+    width: 1300px;
+    height: 40px;
+    background-color: #CECECE;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    align-items: center;
+}
+
+.nav-menu {
+    margin-left: 30px;
+    display: inline-block;
+}
+
+.switch-menu {
+    margin-left: auto;
+    margin-right: 20px;
+}
+
+.switch-button {
+    border: none;
+    background-color: transparent;
+}
+
+.switch-button:hover{
+    cursor: pointer;
+
+}
