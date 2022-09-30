@@ -6,8 +6,11 @@
 .title-text, .name-text {
     font-size: 96px;
     font-weight: 400;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
+    letter-spacing: normal;
+    line-height: 1;
 }
+
 
 .title-text, .name-text, .stack-text, .location-text, .job-info-text {
     cursor: default;
