@@ -1,0 +1,15 @@
+<div class="thumbnail">
+    <mat-card class="thumbnail-card">
+        <mat-card-header class="card-header">
+            <mat-card-title>{{portfolio.name}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="{{portfolio.thumbnailImage}}" class="portfolio-thumbnail">
+        <mat-card-content>
+            <p>Used technologies:</p>
+            <span *ngFor="let technology of portfolio.usedTechnologies" class="technology-text">{{technology.name}} </span>
+        </mat-card-content>
+        <mat-card-actions>
+            <a mat-raised-button href={{portfolio.repoUrl}} target="_blank">GitHub</a>
+        </mat-card-actions>
+    </mat-card>
+</div>
