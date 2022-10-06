@@ -41,6 +41,22 @@ export class PortfolioComponent implements OnInit {
           name: 'JavaScript'
         }
       ],
+    },
+    {
+      id: 3,
+      name: 'Test Website',
+      repoUrl: 'https://github.com/majki741/personal-website',
+      thumbnailImage: '../assets/images/portfolioThumbnails/personal-website.png',
+      usedTechnologies: [
+        {
+          id: 1,
+          name: 'Angular'
+        },
+        {
+          id: 2,
+          name: 'JavaScript'
+        }
+      ],
     }
   ];
 

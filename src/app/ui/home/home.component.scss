@@ -1,10 +1,13 @@
 .container {
-    margin-left: 30px;
-    margin-right: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    justify-content: center;
+    //border: 1px solid black;
+
 }
 
 .title-text, .name-text {
-    font-size: 96px;
+    font-size: 5vw;
     font-weight: 400;
     font-family: 'Roboto';
     letter-spacing: normal;
@@ -17,39 +20,40 @@
 }
 
 .stack-text, .location-text, .job-info-text {
-    font-size: 13px;
+    font-size: 1vw;
     font-weight: 300;
     font-family: 'Roboto', sans-serif;
 }
 
 .introduce {
     text-align:end;
-    height: 67%;
-    border: 1px solid black;
+    height: 57%;
+    //border: 1px solid black;
     margin-top: auto;
 }
 .name {
-    margin-top: 45%;
-    margin-right: 10px;
+    padding-top: 30%;
+    padding-right: 10px;
     text-align: right;
 }
 
 .image#devops-logo {
-    height: 200px;
+    height: 10vw;
+    //border: solid 1px yellow;
 }
 .links {
     margin-top: 50px;
 }
 
 .links .image{
-    height: 58px;
+    height: 4vw;
 }
 
-.image#my-photo {
-    width: 100%;
-    height: 382px;
-    object-fit: cover;
-    object-position: bottom;
+.photo > .image {
+    height: 15vw;
+    width: 14vw;
+    border-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -66,25 +70,69 @@
 
 .right-column, .left-column {
     width: 50%;
-    //border: solid 1px black;
+    height: 100%;
+    //border: solid 1px violet;
 }
 
 .columns {
     display: flex;
     flex-direction: row;
+    //border: solid 1px pink;
 }
 
 @media screen and (max-width: 768px) {
-    .title-text, .name-text {
-        font-size: 18px;
+
+    .stack-text, .location-text, .job-info-text {
+        font-size: 2vw;
+        text-align: center;
+    }
+    .logo {
+        margin-top: 10px;
+    }
+    .name, .introduce, .location {
+        margin-top: 0;
+        text-align: center;
+    }
+    .name {
+        padding-top: 10px;
+    }
+    .title, .stack, .links {
+        margin-top: 5%;
+        text-align: center;
+    }
+    .photo{
+        text-align: center;
+        height: 200px;
+        margin-bottom: 10px;
     }
 
-    .image#devops-logo {
-        height: 10px;
+    .photo > .image {
+        //border: solid 1px black;
+        
+        height: 100%;
+        width: auto;
     }
 
-    .photo {
-        height: 30px;
+    .columns {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    .right-column, .left-column {
+        width: 100%;
+        height: 100%;
+    }
+
+    .right-column{
+        order: 1;
+    }
+    .left-column{
+        order: 2;
+    }
+
+    .logo {
+        visibility: hidden;
+        height: 0;
+        margin-top: 0;
     }
 
 }

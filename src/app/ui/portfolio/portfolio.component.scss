@@ -1,4 +1,33 @@
 .portfolio-tab {
+    //border: 1px solid green;
+    //display: flex;
+    //flex-direction: row;
+    //flex-wrap: wrap;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fill, 350px);
+    grid-gap: 20px;
+    justify-content: space-around;
+    margin-right: 5%;
+    margin-left: 5%;
+    margin-bottom: 5%;
+}
+
+.portfolioCard {
+    margin-left: 2%;
+    margin-right: 2%;
+    //flex-basis: 350px;
+}
+
+@media screen and (max-width: 768px) {
+    .portfolio-tab {
+        grid-template-columns: repeat(auto-fill, 90%);
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
+    .portfolioCard {
+        margin-left: 0%;
+        margin-right: 0%;
+    }
+
 }
