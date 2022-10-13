@@ -11,6 +11,7 @@ import { HomeComponent } from './ui/home/home.component';
 import { PortfolioComponent } from './ui/portfolio/portfolio.component';
 import { PortfolioThumbnailComponent } from './shared/portfolio-thumbnail/portfolio-thumbnail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ContactComponent } from './ui/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     HomeComponent,
     PortfolioComponent,
-    PortfolioThumbnailComponent
+    PortfolioThumbnailComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
