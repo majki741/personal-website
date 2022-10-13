@@ -26,5 +26,5 @@ steps:
   inputs:  
     CopyRoot: /dist
     Contents: '**'
-    ArtifactName: angular-web-app
+    ArtifactName: witryna-osobista
     ArtifactType: Container
