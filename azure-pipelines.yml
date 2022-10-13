@@ -16,9 +16,14 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
     npm run build
   displayName: 'npm install and build'
+
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    publishRegistry: 'useFeed'
+    publishFeed: 'e37420e2-3f46-4f02-9de5-1d73cf150c4b'
 
 - task: PublishBuildArtifacts@1
   inputs:
