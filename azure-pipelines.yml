@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm clean install
+    npm install
   displayName: 'npm install'
 
 - task: Npm@1
