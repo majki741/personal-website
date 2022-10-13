@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/Samulakmikolaj/personal-website/_apis/build/status/majki741.personal-website?branchName=main)](https://dev.azure.com/Samulakmikolaj/personal-website/_build/latest?definitionId=6&branchName=main)
+
 # WitrynaOsobista
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.2.
