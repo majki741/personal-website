@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  name: 'AWS Linux'
 
 steps:
 - task: NodeTool@0
