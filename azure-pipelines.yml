@@ -89,7 +89,7 @@ stages:
       retryCountOnTaskFailure: 2
       inputs:
         azureSubscription: 'Azure_RM_RG_MGR'
-        appName: 'personal-website-mgr-ms'
+        appName: personal-website-mgr-ms
         containers: 'majki741/personal-website:latest'
     #- task: AzureWebAppContainer@1
     #  displayName: 'Deploy Azure WebApp Container'
