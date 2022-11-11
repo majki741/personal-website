@@ -57,7 +57,7 @@ stages:
 - stage: Build_Docker
   displayName: Build and push docker image
   jobs:
-  - job: Build
+  - job: Build_and_push
     pool:
       name: 'AWS Linux'
     steps:
@@ -66,4 +66,9 @@ stages:
         command: 'build'
         Dockerfile: '**/Dockerfile'
         tags: '$(date:yyyyMMdd):$(Build.BuildId)'
-
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'DockerHub'
+        repository: 'majki741/personal-website'
+        command: 'push'
+        tags: '$(date:yyyyMMdd):$(Build.BuildId)'
