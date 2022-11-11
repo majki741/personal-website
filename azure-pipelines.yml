@@ -86,7 +86,8 @@ stages:
     steps:
     - task: AzureWebAppContainer@1
       displayName: 'Deploy Azure WebApp Container'
+      retryCountOnTaskFailure: 3
       inputs:
-        azureSubscription: 'Azure for Students(1)(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
+        azureSubscription: 'Azure for Students (1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
         appName: 'personal-website-mgr-ms'
         containers: 'majki741/personal-website:latest'
