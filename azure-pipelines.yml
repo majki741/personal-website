@@ -75,6 +75,7 @@ stages:
         containerRegistry: 'DockerHub'
         repository: 'majki741/personal-website'
         command: 'push'
+        tags: 'latest'
     
 - stage: Deploy
   displayName: Deploy docker to azure webapp
