@@ -84,6 +84,13 @@ stages:
     pool:
       name: 'AWS Linux'
     steps:
+    - task: AzureWebAppContainer@1
+      displayName: 'Deploy Azure WebApp Container'
+      retryCountOnTaskFailure: 2
+      inputs:
+        azureSubscription: 'Azure_RM_RG_MGR'
+        appName: 'personal-website-mgr-ms'
+        containers: 'majki741/personal-website:latest'
     #- task: AzureWebAppContainer@1
     #  displayName: 'Deploy Azure WebApp Container'
     #  retryCountOnTaskFailure: 3
@@ -91,13 +98,14 @@ stages:
     #    azureSubscription: 'Azure for Students(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
     #    appName: 'personal-website-mgr-ms'
     #    containers: 'majki741/personal-website:latest'
-    - task: AzureRmWebAppDeployment@4
-      displayName: 'Deploy Azure WebApp Container'
-      inputs:
-        ConnectionType: 'AzureRM'
-        azureSubscription: 'Azure for Students(1)(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
-        appType: 'webAppContainer'
-        WebAppName: 'personal-website-mgr-ms'
-        DockerNamespace: 'majki741'
-        DockerRepository: 'personal-website'
-        DockerImageTag: 'latest'
+    #- task: AzureRmWebAppDeployment@4
+    #  displayName: 'Deploy Azure WebApp Container'
+    #  inputs:
+    #    ConnectionType: 'AzureRM'
+    #    azureSubscription: 'Azure for Students(1)(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
+    #    appType: 'webAppContainer'
+    #    WebAppName: 'personal-website-mgr-ms'
+    #    DockerNamespace: 'majki741'
+    #    DockerRepository: 'personal-website'
+    #    DockerImageTag: 'latest'
+        
