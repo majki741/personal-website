@@ -54,4 +54,16 @@ stages:
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
+- stage: Build_Docker
+  displayName: Build and push docker image
+  jobs:
+  - job: Build
+    pool:
+      name: 'AWS Linux'
+    steps:
+    - task: Docker@2
+      inputs:
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(date:yyyyMMdd):$(Build.BuildId)'
 
