@@ -84,12 +84,17 @@ stages:
     pool:
       name: 'AWS Linux'
     steps:
+    - task: AzureAppServiceManage@0
+      inputs:
+        azureSubscription: 'Azure_RM_RG_MGR'
+        Action: 'Start Azure App Service'
+        WebAppName: 'personal-website-mgr-ms'
     - task: AzureWebAppContainer@1
       displayName: 'Deploy Azure WebApp Container'
       retryCountOnTaskFailure: 2
       inputs:
         azureSubscription: 'Azure_RM_RG_MGR'
-        appName: personal-website-mgr-ms
+        appName: 'personal-website-mgr-ms'
         containers: 'majki741/personal-website:latest'
     #- task: AzureWebAppContainer@1
     #  displayName: 'Deploy Azure WebApp Container'
@@ -108,4 +113,3 @@ stages:
     #    DockerNamespace: 'majki741'
     #    DockerRepository: 'personal-website'
     #    DockerImageTag: 'latest'
-        
