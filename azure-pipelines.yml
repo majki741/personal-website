@@ -84,6 +84,19 @@ stages:
     pool:
       name: 'AWS Linux'
     steps:
+    - task: AzureResourceManagerTemplateDeployment@3
+      displayName: ARM deployment
+      inputs:
+        deploymentScope: 'Resource Group'
+        azureResourceManagerConnection: 'Azure_RM_RG_MGR'
+        subscriptionId: '1d8c6de3-acbf-4ebc-ba89-85dc78fe1436'
+        action: 'Create Or Update Resource Group'
+        resourceGroupName: 'RG_MGR'
+        location: 'West Europe'
+        templateLocation: 'Linked artifact'
+        csmFile: 'provisioning/template.json'
+        csmParametersFile: 'provisioning/parameters.json'
+        deploymentMode: 'Incremental'
     - task: AzureAppServiceManage@0
       inputs:
         azureSubscription: 'Azure_RM_RG_MGR'
