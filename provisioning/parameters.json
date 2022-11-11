@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "serverfarms_ASP_RGMGR_8b43_name": {
-            "value": null
+            "value": "ASP-RGMGR-8b43"
         },
         "sites_personal_website_mgr_ms_name": {
-            "value": null
+            "value": "personal-website-mgr-ms"
         }
     }
 }
