@@ -100,6 +100,7 @@ stages:
     - task: AzureAppServiceManage@0
       inputs:
         azureSubscription: 'Azure_RM_RG_MGR'
+        ResourceGroupName: 'RG_MGR'
         Action: 'Start Azure App Service'
         WebAppName: 'personal-website-mgr-ms'
     - task: AzureWebAppContainer@1
