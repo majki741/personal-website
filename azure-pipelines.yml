@@ -62,13 +62,54 @@ stages:
       name: 'AWS Linux'
     steps:
     - task: Docker@2
+      displayName: 'Build Docker Image'
       inputs:
         containerRegistry: 'DockerHub'
         repository: 'majki741/personal-website'
         command: 'build'
         Dockerfile: '**/Dockerfile'
+        tags: 'latest'
     - task: Docker@2
+      displayName: 'Push Docker Image'
       inputs:
         containerRegistry: 'DockerHub'
         repository: 'majki741/personal-website'
         command: 'push'
+        tags: 'latest'
+    
+- stage: Deploy
+  displayName: Deploy docker to azure webapp
+  jobs:
+  - job: Deploy_Azure
+    pool:
+      name: 'AWS Linux'
+    steps:
+    - task: AzureAppServiceManage@0
+      inputs:
+        azureSubscription: 'Azure_RM_RG_MGR'
+        Action: 'Start Azure App Service'
+        WebAppName: 'personal-website-mgr-ms'
+    - task: AzureWebAppContainer@1
+      displayName: 'Deploy Azure WebApp Container'
+      retryCountOnTaskFailure: 2
+      inputs:
+        azureSubscription: 'Azure_RM_RG_MGR'
+        appName: 'personal-website-mgr-ms'
+        containers: 'majki741/personal-website:latest'
+    #- task: AzureWebAppContainer@1
+    #  displayName: 'Deploy Azure WebApp Container'
+    #  retryCountOnTaskFailure: 3
+    #  inputs:
+    #    azureSubscription: 'Azure for Students(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
+    #    appName: 'personal-website-mgr-ms'
+    #    containers: 'majki741/personal-website:latest'
+    #- task: AzureRmWebAppDeployment@4
+    #  displayName: 'Deploy Azure WebApp Container'
+    #  inputs:
+    #    ConnectionType: 'AzureRM'
+    #    azureSubscription: 'Azure for Students(1)(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
+    #    appType: 'webAppContainer'
+    #    WebAppName: 'personal-website-mgr-ms'
+    #    DockerNamespace: 'majki741'
+    #    DockerRepository: 'personal-website'
+    #    DockerImageTag: 'latest'
