@@ -62,6 +62,7 @@ stages:
       name: 'AWS Linux'
     steps:
     - task: Docker@2
+      displayName: 'Build Docker Image'
       inputs:
         containerRegistry: 'DockerHub'
         repository: 'majki741/personal-website'
@@ -69,6 +70,7 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: 'latest'
     - task: Docker@2
+      displayName: 'Push Docker Image'
       inputs:
         containerRegistry: 'DockerHub'
         repository: 'majki741/personal-website'
@@ -76,3 +78,14 @@ stages:
     
 - stage: Deploy
   displayName: Deploy docker to azure webapp
+  jobs:
+  - job: Deploy_Azure
+    pool:
+      name: 'AWS Linux'
+    steps:
+    - task: AzureWebAppContainer@1
+      displayName: 'Deploy Azure WebApp Container'
+      inputs:
+        azureSubscription: 'Azure for Students(1)(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
+        appName: 'personal-website-mgr-ms'
+        containers: 'majki741/personal-website:latest'
