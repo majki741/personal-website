@@ -63,12 +63,12 @@ stages:
     steps:
     - task: Docker@2
       inputs:
+        containerRegistry: 'DockerHub'
+        repository: 'majki741/personal-website'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        tags: '$(date:yyyyMMdd):$(Build.BuildId)'
     - task: Docker@2
       inputs:
         containerRegistry: 'DockerHub'
         repository: 'majki741/personal-website'
         command: 'push'
-        tags: '$(date:yyyyMMdd):$(Build.BuildId)'
