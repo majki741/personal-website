@@ -116,8 +116,8 @@ stages:
             AzureCli=`az --help`
             if [[ $AzureCli == *"command not found"* ]] 
                     then
-                    curl https://azurecliprod.blob.core.windows.net/install | bash
-                    exec -l $SHELL
+                    sudo curl https://azurecliprod.blob.core.windows.net/install | bash
+                    sudo exec -l $SHELL
             fi
       - task: AzureCLI@2
         displayName: Install nginx
