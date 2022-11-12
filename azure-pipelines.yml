@@ -135,7 +135,7 @@ stages:
                -g $(RESOURCEGROUP) \
                -n $(VM_NAME) \
                --command-id RunShellScript \
-               --scripts "sudo apt-get update && sudo apt-get install -y nginx"
+               --scripts "sudo apt-get update && sudo apt-get install -y nginx && sudo apt-get install -y zip"
       - task: AzureCLI@2
         displayName: Open port 80/TCP
         inputs:
@@ -145,8 +145,16 @@ stages:
           inlineScript: 'az vm open-port --port 80 --resource-group $(RESOURCEGROUP) --name $(VM_NAME)'
       - download: current
         artifact: drop
+      - task: CopyFilesOverSSH@0
+        displayName: Copy artifact
+        inputs:
+          sshEndpoint: 'AzureVM_SSH'
+          sourceFolder: '$(Pipeline.Workspace)/drop/'
+          contents: '**'
+          targetFolder: '/home/azureuser'
+          readyTimeout: '20000'
       - task: AzureCLI@2
-        displayName: Deploy App using nginx
+        displayName: Deploy artifact
         inputs:
           azureSubscription: 'Azure_RM_RG_MGR'
           scriptType: 'bash'
@@ -156,4 +164,5 @@ stages:
               -g $(RESOURCEGROUP) \
               -n $(VM_NAME) \
               --command-id RunShellScript \
-              --scripts "sudo cp $(Pipeline.Workspace)/drop/personal-website.zip /home/azureuser && sudo systemctl restart nginx" 
+              --scripts "mkdir /home/azureuser/personal-website && sudo cp /home/azureuser/personal-website.zip /home/azureuser/personal-website && unzip /home/azureuser/personal-website/personal-website.zip && rm /home/azureuser/personal-website/personal-website.zip && sudo rm /var/www/html/* && sudo cp /home/azureuser/personal-website/ /var/www/html/ && sudo systemctl restart nginx" 
+        
