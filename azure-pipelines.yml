@@ -67,10 +67,10 @@ stages:
         command: 'push'
         tags: 'latest'
     
-- stage: Deploy
+- stage: Deploy_WebApp
   displayName: Deploy docker to azure webapp
   jobs:
-  - job: Deploy_Azure
+  - job: Deploy_WebApp
     pool:
       name: 'AWS Linux'
     steps:
@@ -101,3 +101,29 @@ stages:
         resourceGroupName: 'RG_MGR'
         appName: 'personal-website-mgr-ms'
         containers: 'majki741/personal-website:latest'
+- stage: Deploy_VM
+  displayName: Deploy app to VM
+  jobs:
+  - job: Deploy_App_to_VM
+    pool:
+      name: 'AWS Linux'
+    steps:
+      - task: AzureCLI@2
+        displayName: Install nginx
+        inputs:
+          azureSubscription: 'Azure_RM_RG_MGR'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az vm run-command invoke \
+               -g $(RESOURCEGROUP) \
+               -n $(VM_NAME) \
+               --command-id RunShellScript \
+               --scripts "sudo apt-get update && sudo apt-get install -y nginx"
+      - task: AzureCLI@2
+        displayName: Open port 80/TCP
+        inputs:
+          azureSubscription: 'Azure_RM_RG_MGR'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: 'az vm open-port --port 80 --resource-group $(RESOURCEGROUP) --name $(VM_NAME)'
