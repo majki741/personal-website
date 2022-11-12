@@ -109,15 +109,18 @@ stages:
       name: 'AWS Linux'
     steps:
       - task: Bash@3
+        displayName: Install Azure-CLI
         inputs:
           targetType: 'inline'
           script: |
             #!/bin/bash
             AzureCli=`az --help`
             if [[ $AzureCli == *"command not found"* ]] 
-                    then
-                    sudo curl https://azurecliprod.blob.core.windows.net/install | bash
-                    sudo exec -l $SHELL
+              then
+              sudo curl https://azurecliprod.blob.core.windows.net/install | bash
+              sudo exec -l $SHELL
+            else
+              echo "OK"
             fi
       - task: AzureCLI@2
         displayName: Install nginx
