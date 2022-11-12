@@ -23,16 +23,6 @@ stages:
       inputs:
         versionSpec: '16.x'
       displayName: 'Install Node.js 16.x'
-
-
-    #- task: Cache@2
-    #  inputs:
-    #    key: 'npm | "$(Agent.OS)" | package-lock.json'
-    #    restoreKeys: |
-    #      npm | "$(Agent.OS)"
-    #    path: $(npm_config_cache)
-    #  displayName: Cache npm
-
     - script: | 
         npm install -g @angular/cli
         npm install
@@ -111,20 +101,3 @@ stages:
         resourceGroupName: 'RG_MGR'
         appName: 'personal-website-mgr-ms'
         containers: 'majki741/personal-website:latest'
-    #- task: AzureWebAppContainer@1
-    #  displayName: 'Deploy Azure WebApp Container'
-    #  retryCountOnTaskFailure: 3
-    #  inputs:
-    #    azureSubscription: 'Azure for Students(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
-    #    appName: 'personal-website-mgr-ms'
-    #    containers: 'majki741/personal-website:latest'
-    #- task: AzureRmWebAppDeployment@4
-    #  displayName: 'Deploy Azure WebApp Container'
-    #  inputs:
-    #    ConnectionType: 'AzureRM'
-    #    azureSubscription: 'Azure for Students(1)(1d8c6de3-acbf-4ebc-ba89-85dc78fe1436)'
-    #    appType: 'webAppContainer'
-    #    WebAppName: 'personal-website-mgr-ms'
-    #    DockerNamespace: 'majki741'
-    #    DockerRepository: 'personal-website'
-    #    DockerImageTag: 'latest'
