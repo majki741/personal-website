@@ -143,3 +143,17 @@ stages:
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: 'az vm open-port --port 80 --resource-group $(RESOURCEGROUP) --name $(VM_NAME)'
+      - download: current
+        artifact: drop
+      - task: AzureCLI@2
+        displayName: Deploy App using nginx
+        inputs:
+          azureSubscription: 'Azure_RM_RG_MGR'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: |
+            az vm run-command invoke \
+              -g $(RESOURCEGROUP) \
+              -n $(VM_NAME) \
+              --command-id RunShellScript \
+              --scripts "sudo cp $(Pipeline.Workspace)\drop\personal-website.zip /home/azureuser && sudo systemctl restart nginx" 
