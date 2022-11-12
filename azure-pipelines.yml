@@ -108,6 +108,17 @@ stages:
     pool:
       name: 'AWS Linux'
     steps:
+      - task: Bash@3
+        inputs:
+          targetType: 'inline'
+          script: |
+            #!/bin/bash
+            AzureCli=`az --help`
+            if [[ $AzureCli == *"command not found"* ]] 
+                    then
+                    curl https://azurecliprod.blob.core.windows.net/install | bash
+                    exec -l $SHELL
+            fi
       - task: AzureCLI@2
         displayName: Install nginx
         inputs:
