@@ -114,16 +114,16 @@ stages:
           targetType: 'inline'
           script: |
             #!/bin/bash
-            AzureCli=`az --help`
-            if [[ "$AzureCli" == *"command not found"* ]] 
-              then
+            #AzureCli=`az --help`
+            #if [[ "$AzureCli" == *"command not found"* ]] 
+              #then
               sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
               sudo dnf install -y https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm
               sudo dnf install -y https://packages.microsoft.com/config/rhel/9.0/packages-microsoft-prod.rpm
               sudo dnf install azure-cli
-            else
-              echo "OK"
-            fi
+            #else
+            #  echo "OK"
+            #fi
       - task: AzureCLI@2
         displayName: Install nginx
         inputs:
