@@ -115,7 +115,7 @@ stages:
           script: |
             #!/bin/bash
             AzureCli=`az --help`
-            if [[ $AzureCli == *"command not found"* ]] 
+            if [[ "$AzureCli" == *"command not found"* ]] 
               then
               sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
               sudo dnf install -y https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm
