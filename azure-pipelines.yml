@@ -156,4 +156,4 @@ stages:
               -g $(RESOURCEGROUP) \
               -n $(VM_NAME) \
               --command-id RunShellScript \
-              --scripts "sudo cp $(Pipeline.Workspace)\drop\personal-website.zip /home/azureuser && sudo systemctl restart nginx" 
+              --scripts "sudo cp $(Pipeline.Workspace)/drop/personal-website.zip /home/azureuser && sudo systemctl restart nginx" 
