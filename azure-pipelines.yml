@@ -35,12 +35,12 @@ stages:
         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/witryna-osobista/'
         includeRootFolder: false
         archiveType: zip
-        archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+        archiveFile: $(Build.ArtifactStagingDirectory)/personal-website.zip
         replaceExistingArchive: true
     
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/personal-website.zip'
         ArtifactName: 'drop'
         publishLocation: 'Container'
 
