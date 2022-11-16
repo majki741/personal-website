@@ -15,8 +15,10 @@ variables:
     value: latest
   - name: dockerUserName
     value: majki741
-  - name: azureWebAppName
+  - name: azureContainerWebAppName
     value: personal-website-mgr-ms
+  - name: azureWebAppName
+    value: angular-personal-website-mgr-ms
   - name: azureSubscriptionId
     value: 1d8c6de3-acbf-4ebc-ba89-85dc78fe1436
   - name: azureLocation
@@ -106,18 +108,19 @@ stages:
         csmParametersFile: 'provisioning/parameters.json'
         deploymentMode: 'Incremental'
     - task: AzureAppServiceManage@0
+      displayName: Start WebApp
       inputs:
         azureSubscription: 'Azure_RM_RG_MGR'
         ResourceGroupName: '$(RESOURCEGROUP)'
         Action: 'Start Azure App Service'
-        WebAppName: '$(azureWebAppName)'
+        WebAppName: '$(azureContainerWebAppName)'
     - task: AzureWebAppContainer@1
       displayName: 'Deploy Azure WebApp Container'
       retryCountOnTaskFailure: 2
       inputs:
         azureSubscription: 'Azure_RM_RG_MGR'
         resourceGroupName: '$(RESOURCEGROUP)'
-        appName: '$(azureWebAppName)'
+        appName: '$(azureContainerWebAppName)'
         containers: '$(DOCKERUSERNAME)/$(DOCKERIMAGE):$(DOCKERIMAGETAG)'
 - stage: Deploy_VM
   displayName: Deploy app to VM
@@ -183,20 +186,27 @@ stages:
       pool: 
         name: $(AGENTPOOL)
       steps:
+      - task: AzureAppServiceManage@0
+        displayName: Start WebApp
+        inputs:
+          azureSubscription: 'Azure_RM_RG_MGR'
+          ResourceGroupName: '$(RESOURCEGROUP)'
+          Action: 'Start Azure App Service'
+          WebAppName: '$(azureWebAppName)'
+      - task: AzureCLI@2
+        displayName: Configure WebApp
+        inputs:
+          azureSubscription: 'Azure_RM_RG_MGR'
+          scriptType: 'bash'
+          scriptLocation: 'inlineScript'
+          inlineScript: 'az webapp config set -g $(RESOURCEGROUP) -n $(azureWebAppName) --startup-file="pm2 serve /home/site/wwwroot --no-daemon --spa"'
       - download: current
         artifact: drop
-      #- task: AzureRmWebAppDeployment@4
-      #  inputs:
-      #    ConnectionType: 'AzureRM'
-      #    azureSubscription: 'Azure_RM_RG_MGR'
-      #    appType: 'webAppLinux'
-      #    WebAppName: 'angular-personal-website-mgr-ms'
-      #    packageForLinux: '$(Pipeline.Workspace)/**/*.zip'
-      #    RuntimeStack: 'NODE|16-lts'
       - task: AzureWebApp@1
+        displayName: Deploy Artifact to WebApp
         inputs:
           azureSubscription: 'Azure_RM_RG_MGR'
           appType: 'webAppLinux'
-          appName: 'angular-personal-website-mgr-ms'
+          appName: '$(azureWebAppName)'
           package: '$(Pipeline.Workspace)/**/*.zip'
           runtimeStack: 'NODE|16-lts'
