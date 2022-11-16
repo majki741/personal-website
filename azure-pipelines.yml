@@ -183,6 +183,8 @@ stages:
       pool: 
         name: $(AGENTPOOL)
       steps:
+      - download: current
+        artifact: drop
       - task: AzureRmWebAppDeployment@4
         inputs:
           ConnectionType: 'AzureRM'
