@@ -176,4 +176,18 @@ stages:
               -n $(VM_NAME) \
               --command-id RunShellScript \
               --scripts "mkdir /home/azureuser/personal-website && sudo cp /home/azureuser/personal-website.zip /home/azureuser/personal-website && sudo unzip /home/azureuser/personal-website/personal-website.zip && sudo rm /home/azureuser/personal-website/personal-website.zip --force && sudo rm /var/www/html/* --force -r && sudo cp -R /home/azureuser/personal-website/* /var/www/html/ && sudo systemctl restart nginx" 
-        
+- stage: Deploy_Artifact_WebApp
+  displayName: Deploy artifact to Web App
+  jobs:
+    - job: Deploy_Artifact_WebApp
+      pool: 
+        name: $(AGENTPOOL)
+      steps:
+      - task: AzureRmWebAppDeployment@4
+        inputs:
+          ConnectionType: 'AzureRM'
+          azureSubscription: 'Azure_RM_RG_MGR'
+          appType: 'webAppLinux'
+          WebAppName: 'angular-personal-website-mgr-ms'
+          packageForLinux: '$(Pipeline.Workspace)/**/*.zip'
+          RuntimeStack: 'NODE|16-lts'
