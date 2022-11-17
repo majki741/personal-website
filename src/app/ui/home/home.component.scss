@@ -43,6 +43,8 @@
 }
 .links {
     margin-top: 50px;
+    text-decoration: none;
+    color: black;
 }
 
 .links .image{
@@ -55,7 +57,10 @@
     border-radius: 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
-
+.linkIcon {
+    text-decoration: none;
+    color: black;
+}
 .logo {
     margin-top: 50px;
     //border: solid 1px yellow;

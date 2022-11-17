@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as globals from '../../global'
 
 @Component({
   selector: 'app-navbar',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-
+  isDarkMode = globals.isDarkMode;
+  turnDarkMode = globals.turnDarkMode
+  
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,17 @@
 //@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden;}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow: hidden; }
 
+.navDarkMode{
+    color: white !important;
+    background-color:#2e2e2e !important;
+    //box-shadow: 0 2px 4px rgba(255, 255, 255, 1) !important;
+}
+.portfolioDarkMode {
+    color: white !important;
+    background-color:#5c606c !important;
+}
+.darkMode {
+    color: white !important;
+    background-color:#3b3b3b !important;
+}

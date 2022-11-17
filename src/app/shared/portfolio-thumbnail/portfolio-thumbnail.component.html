@@ -1,5 +1,5 @@
 <div class="thumbnail">
-    <mat-card class="thumbnail-card">
+    <mat-card class="thumbnail-card" id="portfolioThumbnail" [ngClass]="isDarkMode ? 'thumbnail-card thumbnailDarkMode' : 'thumbnail-card'  "> <!-- :TODO: -->
         <mat-card-header class="card-header">
             <mat-card-title>{{portfolio.name}}</mat-card-title>
         </mat-card-header>
