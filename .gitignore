@@ -43,3 +43,4 @@ Thumbs.db
 
 # Terraform
 /.terraform/*
+terraform.tfstate.backup
