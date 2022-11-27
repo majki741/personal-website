@@ -8,8 +8,8 @@ import * as globals from '../../global'
 })
 export class NavbarComponent implements OnInit {
   isDarkMode = globals.isDarkMode;
-  turnDarkMode = globals.turnDarkMode
-  
+  turnDarkMode = globals.turnDarkMode;
+
   constructor() { }
 
   ngOnInit(): void {

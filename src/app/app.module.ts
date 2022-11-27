@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatMenuModule } from '@angular/material/menu'
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatStepperModule } from '@angular/material/stepper';
 import { appRoutes } from 'src/routes';
 
 import { AppComponent } from './app.component';
@@ -15,6 +16,7 @@ import { PortfolioComponent } from './ui/portfolio/portfolio.component';
 import { PortfolioThumbnailComponent } from './shared/portfolio-thumbnail/portfolio-thumbnail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ContactComponent } from './ui/contact/contact.component';
+import { AboutComponent } from './ui/about/about.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { ContactComponent } from './ui/contact/contact.component';
     HomeComponent,
     PortfolioComponent,
     PortfolioThumbnailComponent,
-    ContactComponent
+    ContactComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { ContactComponent } from './ui/contact/contact.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
+    MatStepperModule,
     MatSlideToggleModule
   ],
   providers: [],
