@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { appRoutes } from 'src/routes';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './nav/navbar.component';
@@ -37,7 +38,8 @@ import { AboutComponent } from './ui/about/about.component';
     MatMenuModule,
     MatIconModule,
     MatStepperModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
